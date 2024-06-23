@@ -1,6 +1,7 @@
 import numpy as np
 from stl import mesh
 
+import folium
 import pyqtgraph as pg
 import pyqtgraph.opengl as gl
 from PySide6.QtWidgets import *
@@ -13,6 +14,7 @@ from ui.ui_Monitor import Ui_MainWindow
 class Monitor(QMainWindow, Ui_MainWindow):
 
     MAP_HTML = "./map/UEC.html"
+    ICON_SVG = "./map/airplane.svg"
     STL_FILE = "./stl/Rocket.stl"
 
     def __init__(self):
@@ -24,6 +26,9 @@ class Monitor(QMainWindow, Ui_MainWindow):
         
     def set_map(self, map_html):
         self.map_view.setHtml(open(map_html).read())
+    
+    def set_icon(self, icon_file):
+        self.map_view.iconUrl(QUrl(icon_file))
     
     def set_stl(self, stl_file):
         model = self.load_stl(stl_file)
